@@ -1,0 +1,25 @@
+queue_rules:
+  - name: p4-canary-queue
+    queue_conditions:
+      - base=main
+    merge_conditions:
+      - check-success=p4-public-ci
+
+merge_protections:
+  - name: P4-CANARY-MERGE-PROTECTION-internal-only
+    description: P4-CANARY-MP-DESCRIPTION-redteam
+    if:
+      - base = main
+    success_conditions:
+      - check-success = p4-secret-internal-check
+
+merge_protections_settings:
+  reporting_method: check
+
+pull_request_rules:
+  - name: P4-CANARY-RULE-pullreq
+    conditions:
+      - base=main
+    actions:
+      queue:
+        name: p4-canary-queue
