@@ -14,7 +14,7 @@ merge_protections:
       - check-success = p4-secret-internal-check
 
 merge_protections_settings:
-  reporting_method: check
+  reporting_method: check-runs
 
 pull_request_rules:
   - name: P4-CANARY-RULE-pullreq
